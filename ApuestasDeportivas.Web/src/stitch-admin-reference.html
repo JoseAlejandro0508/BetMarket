@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Electric Orbit Sports - Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#1f3247",
+                    "on-error-container": "#ffdad6",
+                    "on-primary": "#003060",
+                    "tertiary-fixed": "#a1efff",
+                    "on-secondary-fixed": "#001c3b",
+                    "on-background": "#d1e4ff",
+                    "primary-container": "#3991fa",
+                    "on-primary-fixed": "#001c3b",
+                    "secondary": "#adc8f5",
+                    "secondary-fixed": "#d5e3ff",
+                    "on-tertiary-fixed": "#001f25",
+                    "tertiary-container": "#009fb4",
+                    "on-secondary-container": "#9fbae6",
+                    "inverse-primary": "#005eb2",
+                    "tertiary": "#44d8f1",
+                    "on-surface-variant": "#c1c6d5",
+                    "on-secondary-fixed-variant": "#2d486d",
+                    "on-tertiary": "#00363e",
+                    "outline": "#8b919e",
+                    "background": "#001428",
+                    "tertiary-fixed-dim": "#44d8f1",
+                    "on-surface": "#d1e4ff",
+                    "surface-tint": "#a7c8ff",
+                    "primary": "#a7c8ff",
+                    "secondary-container": "#2f4a70",
+                    "secondary-fixed-dim": "#adc8f5",
+                    "surface-variant": "#23364b",
+                    "surface-container": "#0c2135",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#000f20",
+                    "on-primary-fixed-variant": "#004788",
+                    "outline-variant": "#414753",
+                    "surface-bright": "#283a50",
+                    "surface-container-highest": "#23364b",
+                    "on-tertiary-fixed-variant": "#004e59",
+                    "surface": "#001428",
+                    "inverse-surface": "#d1e4ff",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#001428",
+                    "on-secondary": "#133155",
+                    "on-tertiary-container": "#002f36",
+                    "on-primary-container": "#002a54",
+                    "primary-fixed": "#d5e3ff",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "surface-container-low": "#071d31",
+                    "error-container": "#93000a",
+                    "surface-container-high": "#182b40"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen antialiased flex flex-col md:flex-row">
+<!-- SideNavBar (Hidden on Mobile, Visible on Web) -->
+<nav class="hidden md:flex flex-col py-4 space-y-1 bg-[#071d31] h-screen w-64 fixed left-0 top-16 no-line-rule-tonal-shift flat text-sm font-medium font-['Inter'] z-40 border-r border-white/5">
+<div class="px-6 mb-8 mt-4 hidden">
+<!-- style_brand_logo hidden per JSON, normally would be here -->
+</div>
+<div class="px-4 mb-4">
+<h2 class="text-on-surface text-xs font-bold tracking-wider uppercase mb-1">Main Leagues</h2>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-widest">Top Events</p>
+</div>
+<div class="flex-grow space-y-1 overflow-y-auto">
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_soccer">sports_soccer</span>
+                Soccer
+            </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_basketball">sports_basketball</span>
+                Basketball
+            </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_tennis">sports_tennis</span>
+                Tennis
+            </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_esports">sports_esports</span>
+                Esports
+            </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_mma">sports_mma</span>
+                MMA
+            </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sports_cricket">sports_cricket</span>
+                Cricket
+            </a>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full text-primary hover:bg-[#283a50] py-2 rounded-lg transition-colors text-xs font-semibold uppercase tracking-wider mb-4">
+                View All Sports
+            </button>
+<div class="border-t border-outline-variant/15 pt-4 space-y-1">
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg text-[#c1c6d5] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="help">help</span>
+                    Support
+                </a>
+<a class="flex items-center px-4 py-2 mx-2 rounded-lg bg-[#23364b] text-[#a7c8ff] hover:bg-[#283a50] transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</div>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#071d31]/80 backdrop-blur-xl border-b border-white/5 shadow-[0px_4px_24px_rgba(0,0,0,0.4)] font-['Inter'] tracking-tight flex justify-between items-center h-16 px-6">
+<div class="flex items-center gap-8">
+<div class="text-2xl font-black text-[#a7c8ff] uppercase italic tracking-tighter drop-shadow-md">
+                Electric Orbit Sports
+            </div>
+<nav class="hidden md:flex space-x-6">
+<a class="text-[#c1c6d5] hover:text-[#d1e4ff] transition-colors hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 px-3 py-2 rounded-lg" href="#">Sports</a>
+<a class="text-[#c1c6d5] hover:text-[#d1e4ff] transition-colors hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 px-3 py-2 rounded-lg" href="#">Live</a>
+<a class="text-[#c1c6d5] hover:text-[#d1e4ff] transition-colors hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 px-3 py-2 rounded-lg" href="#">Promotions</a>
+<a class="text-[#c1c6d5] hover:text-[#d1e4ff] transition-colors hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 px-3 py-2 rounded-lg" href="#">Casino</a>
+<a class="text-[#a7c8ff] font-bold border-b-2 border-[#a7c8ff] pb-1 hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 px-3 py-2 rounded-lg" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-[#a7c8ff] hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-[#a7c8ff] hover:bg-[#283a50]/50 transition-all duration-200 ease-out active:scale-95 rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="relative group cursor-pointer flex items-center ml-2 bg-surface-container-highest/50 rounded-full pl-4 pr-1 py-1 border border-white/5 hover:bg-surface-container-highest transition-colors">
+<div class="text-right hidden sm:block mr-3">
+<div class="text-[#a7c8ff] font-bold text-sm leading-none">$1,250.00 <span class="text-on-surface-variant text-[10px] uppercase tracking-wider ml-0.5">JD</span></div>
+</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden ring-2 ring-primary/20">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG7qMv5K9gRSd84zdT94bHlC4MCv3cRuqbVO6rE9pR4zNrNCNt6jyRm35TIguXBLN9TAhhmAM5bK3PzOmtU-H1NvCMCwv_68TxCQBB-8K8jHBtTSWZcpOndAy1m6RaiQtbPdD5hkzqtjgRd8jlY-pOWAhH7L-GjIjBXIv5ZJP-gkKXMsKIgPU2uLRD23aXIAGUavEIBMDmDI5k-vfHF1lV2l0FwnGxJA6dhZrQ3JpTuZ7iap1mkX0HzFWU0hO_ELzgGJmjF10qI2vx"/>
+</div>
+<div class="absolute right-0 top-full mt-2 w-48 bg-surface-container-high border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+<div class="px-4 py-3 border-b border-white/5">
+<p class="text-sm text-on-surface font-medium">Jordan Doe</p>
+<p class="text-xs text-on-surface-variant truncate">jordan@electricorbit.com</p>
+</div>
+<div class="p-2">
+<button class="w-full flex items-center justify-between px-3 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-bright rounded-lg transition-colors">
+<span>Theme</span>
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+</button>
+<button class="w-full flex items-center px-3 py-2 text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-bright rounded-lg transition-colors">
+                                Profile Settings
+                            </button>
+<button class="w-full flex items-center px-3 py-2 text-sm text-error hover:bg-error/10 rounded-lg transition-colors mt-1">
+                                Sign Out
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 md:ml-64 p-6 lg:p-10 flex flex-col gap-8 max-w-[1600px] w-full mx-auto">
+<!-- Page Header -->
+<header class="flex justify-between items-end mb-4">
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-on-surface">Admin Console</h1>
+<p class="text-on-surface-variant text-sm mt-1">System Health &amp; Operations Dashboard</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-high border border-white/5 px-4 py-2 rounded-lg shadow-lg">
+<span class="flex h-3 w-3 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+</span>
+<span class="text-tertiary text-sm font-semibold tracking-wide uppercase">System Operational</span>
+</div>
+</header>
+<!-- Top Row Grids (Control & Health) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Section 1: Live Feed Control -->
+<section class="lg:col-span-2 bg-surface-container-high border border-white/5 shadow-xl backdrop-blur-md rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="online_prediction">online_prediction</span>
+                            Live Feed Control
+                        </h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-lowest/50 px-3 py-1.5 rounded-lg border border-white/5">
+<label class="text-xs text-on-surface-variant font-medium">Interval (s)</label>
+<input class="w-14 bg-surface-container-highest border-none text-on-surface text-sm rounded focus:ring-1 focus:ring-primary py-0.5 px-2 text-center" max="300" min="5" type="number" value="30"/>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+<span class="ml-3 text-sm font-medium text-on-surface-variant">Auto-Refresh</span>
+</label>
+</div>
+</div>
+<div class="flex gap-4 items-end mt-auto">
+<div class="flex-1">
+<label class="block text-xs font-medium text-on-surface-variant uppercase tracking-wider mb-2">Sport Key Selector</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-white/5 text-on-surface text-sm rounded-lg focus:ring-1 focus:ring-primary focus:shadow-[0_0_15px_rgba(167,200,255,0.15)] appearance-none py-3 px-4 pr-10 hover:bg-surface-bright transition-colors cursor-pointer">
+<option selected="" value="upcoming">Upcoming Events</option>
+<option value="live">Live Now</option>
+<option value="nfl">NFL Season</option>
+<option value="nba">NBA Matches</option>
+<option value="epl">Premier League</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-primary/20 transition-all duration-200 active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="sync">sync</span>
+                            Refresh Odds
+                        </button>
+</div>
+</div>
+</section>
+<!-- Section 2: Backend Health -->
+<section class="bg-surface-container-high border border-white/5 shadow-xl backdrop-blur-md rounded-xl p-6 flex flex-col justify-between">
+<h2 class="text-xl font-bold text-on-surface flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="dns">dns</span>
+                    Backend Health
+                </h2>
+<div class="space-y-4">
+<div class="bg-surface-container-highest border border-white/5 p-4 rounded-lg hover:bg-surface-bright transition-colors duration-200">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-on-surface-variant">Main API Latency</span>
+<span class="text-tertiary font-bold font-['Inter']">42ms</span>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5">
+<div class="bg-tertiary h-1.5 rounded-full shadow-[0_0_8px_rgba(68,216,241,0.6)]" style="width: 15%"></div>
+</div>
+</div>
+<div class="bg-surface-container-highest border border-white/5 p-4 rounded-lg hover:bg-surface-bright transition-colors duration-200">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-on-surface-variant">Pricing Engine</span>
+<span class="text-tertiary font-bold font-['Inter']">Optimal</span>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5">
+<div class="bg-tertiary h-1.5 rounded-full shadow-[0_0_8px_rgba(68,216,241,0.6)]" style="width: 100%"></div>
+</div>
+</div>
+<div class="bg-surface-container-highest border border-white/5 p-4 rounded-lg hover:bg-surface-bright transition-colors duration-200">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm text-on-surface-variant">Bet Queue Size</span>
+<span class="text-on-surface font-bold font-['Inter'] text-lg">12</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Section 3: Recent Large Bets -->
+<section class="bg-surface-container-high border border-white/5 rounded-xl flex flex-col overflow-hidden shadow-xl backdrop-blur-md">
+<div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+<h2 class="text-xl font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
+                    High-Stakes Watchlist
+                </h2>
+<button class="text-primary text-sm font-semibold hover:text-primary-container transition-colors">
+                    View Full Log
+                </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/50 text-on-surface-variant text-xs uppercase tracking-wider border-b border-white/5">
+<th class="p-4 font-medium pl-6">User / Ref</th>
+<th class="p-4 font-medium">Market</th>
+<th class="p-4 font-medium">Selection</th>
+<th class="p-4 font-medium text-right">Stake</th>
+<th class="p-4 font-medium text-right">To Win</th>
+<th class="p-4 font-medium text-center pr-6">Status</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-white/5">
+<tr class="hover:bg-surface-bright/30 transition-colors duration-200 group">
+<td class="p-4 pl-6">
+<div class="font-medium text-on-surface">u_992x4a</div>
+<div class="text-xs text-on-surface-variant mt-0.5">TX-8849-B</div>
+</td>
+<td class="p-4">
+<div class="text-on-surface">Lakers vs Celtics</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Moneyline</div>
+</td>
+<td class="p-4 font-medium text-primary">Lakers +140</td>
+<td class="p-4 text-right font-bold text-on-surface font-['Inter']">$15,000.00</td>
+<td class="p-4 text-right font-bold text-tertiary font-['Inter'] drop-shadow-[0_0_8px_rgba(68,216,241,0.3)]">$21,000.00</td>
+<td class="p-4 pr-6 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container/80 text-[#d1e4ff] border border-secondary-container">
+                                    Pending
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright/30 transition-colors duration-200 group">
+<td class="p-4 pl-6">
+<div class="font-medium text-on-surface">u_733m1z</div>
+<div class="text-xs text-on-surface-variant mt-0.5">TX-8850-X</div>
+</td>
+<td class="p-4">
+<div class="text-on-surface">Man City vs Arsenal</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Over/Under 2.5</div>
+</td>
+<td class="p-4 font-medium text-primary">Over -110</td>
+<td class="p-4 text-right font-bold text-on-surface font-['Inter']">$8,500.00</td>
+<td class="p-4 text-right font-bold text-tertiary font-['Inter'] drop-shadow-[0_0_8px_rgba(68,216,241,0.3)]">$7,727.27</td>
+<td class="p-4 pr-6 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-container/80 text-[#d1e4ff] border border-secondary-container">
+                                    Pending
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright/30 transition-colors duration-200 group">
+<td class="p-4 pl-6">
+<div class="font-medium text-on-surface">u_119p4c</div>
+<div class="text-xs text-on-surface-variant mt-0.5">TX-8851-K</div>
+</td>
+<td class="p-4">
+<div class="text-on-surface">Djokovic vs Alcaraz</div>
+<div class="text-xs text-on-surface-variant mt-0.5">Set Betting</div>
+</td>
+<td class="p-4 font-medium text-primary">Alcaraz 3-2</td>
+<td class="p-4 text-right font-bold text-on-surface font-['Inter']">$5,000.00</td>
+<td class="p-4 text-right font-bold text-tertiary font-['Inter'] drop-shadow-[0_0_8px_rgba(68,216,241,0.3)]">$25,000.00</td>
+<td class="p-4 pr-6 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-tertiary/20 text-tertiary border border-tertiary/30">
+                                    Live
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</body></html>

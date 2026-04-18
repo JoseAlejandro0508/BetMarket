@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Electric Orbit Sportsbook</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container-lowest": "#000f20",
+                        "surface-container-low": "#071d31",
+                        "surface-bright": "#283a50",
+                        "on-background": "#d1e4ff",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#001f25",
+                        "on-tertiary-container": "#002f36",
+                        "on-primary-container": "#002a54",
+                        "surface-container-highest": "#23364b",
+                        "outline": "#8b919e",
+                        "tertiary-container": "#009fb4",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#001428",
+                        "secondary-container": "#2f4a70",
+                        "primary-container": "#3991fa",
+                        "surface-container-high": "#182b40",
+                        "on-secondary": "#133155",
+                        "on-secondary-fixed-variant": "#2d486d",
+                        "on-surface": "#d1e4ff",
+                        "inverse-surface": "#d1e4ff",
+                        "on-primary-fixed": "#001c3b",
+                        "secondary": "#adc8f5",
+                        "on-tertiary": "#00363e",
+                        "on-primary-fixed-variant": "#004788",
+                        "background": "#001428",
+                        "on-secondary-fixed": "#001c3b",
+                        "error": "#ffb4ab",
+                        "primary": "#a7c8ff",
+                        "surface-variant": "#23364b",
+                        "secondary-fixed-dim": "#adc8f5",
+                        "on-surface-variant": "#c1c6d5",
+                        "surface-tint": "#a7c8ff",
+                        "surface-container": "#0c2135",
+                        "on-tertiary-fixed-variant": "#004e59",
+                        "on-primary": "#003060",
+                        "inverse-primary": "#005eb2",
+                        "tertiary-fixed-dim": "#44d8f1",
+                        "surface": "#001428",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#1f3247",
+                        "tertiary": "#44d8f1",
+                        "on-secondary-container": "#9fbae6",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "secondary-fixed": "#d5e3ff",
+                        "outline-variant": "#414753",
+                        "tertiary-fixed": "#a1efff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24 relative overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-4 h-16 bg-[#001428]/70 backdrop-blur-xl docked full-width top-0 sticky z-40 border-b border-surface-container-low shadow-[0px_24px_48px_rgba(0,0,40,0.4)]">
+<div class="flex items-center gap-3">
+<button class="w-11 h-11 rounded-full overflow-hidden border-2 border-primary/20 scale-95 active:opacity-80 transition-all duration-200">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a young professional user in soft studio lighting against a dark blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRc-36gwtsNRDgAwE6nOHb-iCf3EeJHOODBQIfC-qrs0QLXohHZuYkbI2srINKPmq4DFGNEm-585v-7rHkSW48EwWQJbypAIRF7zXZuvKK8v7o4_XDiveVlX5XyJEXWMneB15gjKPCpSoS_9hjwJ_p1oEYHf0sDtvK0jo2wZGIpQ-LDLlI4Y-Yo4NiZEd5N_XKvnPK9ZqK7Y8LTceSlW7fzspcA3sinqjHaDL4CcIo_UhXe5zCrVto5kWc94KSp-VzYUGDh0fx-FfE"/>
+</button>
+<span class="text-xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-[#a7c8ff] to-[#3991fa]">ORBIT</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-inter tracking-tight font-bold text-lg text-primary-container">$1,250.00</span>
+</div>
+<!-- Separation Logic Line -->
+<div class="absolute bottom-0 left-0 w-full bg-gradient-to-b from-[#071d31] to-transparent h-px"></div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-6 px-4 space-y-8">
+<!-- Live Now Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">Live Now</h2>
+<span class="px-2 py-1 rounded-full bg-tertiary/10 text-tertiary text-xs font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                    14 Events
+                </span>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-4 pb-4 -mx-4 px-4 snap-x">
+<!-- Live Card 1 -->
+<div class="min-w-[280px] bg-surface-container-highest rounded-xl p-4 shadow-[0px_12px_24px_rgba(0,0,40,0.3)] snap-center flex-shrink-0 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container"></div>
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs text-on-surface-variant font-medium">NBA • Q3 4:12</span>
+<span class="text-xs text-on-surface-variant">Spread</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-bold">LAL</div>
+<span class="font-semibold">Lakers</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-lg w-8 text-right">88</span>
+<button class="bg-secondary-container text-on-surface px-3 py-2 rounded-lg text-sm font-semibold min-w-[60px] text-center hover:bg-surface-bright transition-colors">-4.5</button>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-bold">GSW</div>
+<span class="font-semibold text-on-surface-variant">Warriors</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-lg w-8 text-right text-on-surface-variant">82</span>
+<button class="bg-secondary-container text-on-surface px-3 py-2 rounded-lg text-sm font-semibold min-w-[60px] text-center hover:bg-surface-bright transition-colors">+4.5</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Card 2 -->
+<div class="min-w-[280px] bg-surface-container-highest rounded-xl p-4 shadow-[0px_12px_24px_rgba(0,0,40,0.3)] snap-center flex-shrink-0 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tertiary to-primary"></div>
+<div class="flex justify-between items-start mb-3">
+<span class="text-xs text-on-surface-variant font-medium">EPL • 68'</span>
+<span class="text-xs text-on-surface-variant">Moneyline</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-bold">ARS</div>
+<span class="font-semibold">Arsenal</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-lg w-8 text-right">2</span>
+<button class="bg-secondary-container text-on-surface px-3 py-2 rounded-lg text-sm font-semibold min-w-[60px] text-center hover:bg-surface-bright transition-colors">-110</button>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface flex items-center justify-center text-xs font-bold">CHE</div>
+<span class="font-semibold text-on-surface-variant">Chelsea</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-lg w-8 text-right text-on-surface-variant">1</span>
+<button class="bg-secondary-container text-on-surface px-3 py-2 rounded-lg text-sm font-semibold min-w-[60px] text-center hover:bg-surface-bright transition-colors">+240</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Promos Carousel -->
+<section class="rounded-xl overflow-hidden relative shadow-[0px_12px_32px_rgba(0,0,40,0.4)] aspect-[2/1] w-full">
+<img alt="Stadium" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" data-alt="Dark, atmospheric shot of a massive sports stadium at night, illuminated by dramatic floodlights cutting through light fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDND8LNSz__JWWv1oyJMW_y4IFg1mBXoJzncS7h8bu-5NkyLLRlEkHtaMi4fEigppTmv6WZnBdl_ZyTmKEja001GlG0Cw5m08196Xt1KozeEk-0WfOzpYvKYNSlyjjZXwyMAuzwlRZB0HmOvuzpqw-JO84TuV7tx97fVNGTP37G9OKFHBLYBoYrhs_s1V8n5nYKhaH-ngcZCPDVh5HQRbYJlSEhBnaG7XNzWHpZ3Ce7UoMeCmPUV94fZv6eDREHae93Bgg0dejiiFBN"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-dim via-surface-dim/80 to-transparent p-6 flex flex-col justify-center">
+<span class="text-tertiary text-xs font-bold uppercase tracking-widest mb-2">Boosted Odds</span>
+<h3 class="text-2xl font-black italic tracking-tighter text-on-surface leading-tight mb-4">UFC 300<br/>MEGA PARLAY</h3>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-5 py-2 rounded-lg font-bold text-sm w-max">Claim +450</button>
+</div>
+</section>
+<!-- Upcoming Highlights -->
+<section>
+<h2 class="text-xl font-bold tracking-tight text-on-surface mb-4">Upcoming Highlights</h2>
+<div class="space-y-3">
+<!-- Match 1 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/15">
+<div class="flex justify-between text-xs text-on-surface-variant mb-3">
+<span>NFL • Tomorrow, 8:15 PM</span>
+<span>Moneyline</span>
+</div>
+<div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-sm border border-outline-variant/20">KC</div>
+<span class="text-sm font-semibold">Chiefs</span>
+</div>
+<div class="flex flex-col gap-2">
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg text-sm font-semibold min-w-[80px] text-center border border-outline-variant/10">-130</button>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg text-sm font-semibold min-w-[80px] text-center border border-outline-variant/10">+110</button>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-sm border border-outline-variant/20">SF</div>
+<span class="text-sm font-semibold">49ers</span>
+</div>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant/15">
+<div class="flex justify-between text-xs text-on-surface-variant mb-3">
+<span>UCL • Wed, 3:00 PM</span>
+<span>Moneyline</span>
+</div>
+<div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-sm border border-outline-variant/20">RMA</div>
+<span class="text-sm font-semibold text-center leading-tight">Real<br/>Madrid</span>
+</div>
+<div class="flex flex-col gap-2">
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg text-sm font-semibold min-w-[80px] text-center border border-outline-variant/10">+120</button>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-4 py-2 rounded-lg text-sm font-semibold min-w-[80px] text-center border border-outline-variant/10">+210</button>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-sm border border-outline-variant/20">MCI</div>
+<span class="text-sm font-semibold text-center leading-tight">Man<br/>City</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center pt-2 pb-safe px-4 bg-[#23364b]/70 backdrop-blur-lg rounded-t-2xl shadow-[0px_-8px_24px_rgba(0,0,0,0.3)] md:hidden pb-6">
+<button class="flex flex-col items-center justify-center text-[#a7c8ff] relative after:content-[''] after:absolute after:-bottom-1 after:w-1 after:h-1 after:bg-[#a7c8ff] after:rounded-full ease-out duration-200 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Lobby</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#c1c6d5] opacity-60 hover:opacity-100 ease-out duration-200 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1">sensors</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Live</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#c1c6d5] opacity-60 hover:opacity-100 ease-out duration-200 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1">confirmation_number</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">My Bets</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#c1c6d5] opacity-60 hover:opacity-100 ease-out duration-200 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1">trophy</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Leagues</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#c1c6d5] opacity-60 hover:opacity-100 ease-out duration-200 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1">menu</span>
+<span class="text-[10px] font-semibold uppercase tracking-wider">Menu</span>
+</button>
+</nav>
+</body></html>

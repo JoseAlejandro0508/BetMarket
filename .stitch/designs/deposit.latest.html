@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d5e3ff",
+                        "outline-variant": "#414753",
+                        "on-primary-container": "#002a54",
+                        "on-tertiary-container": "#1c2f00",
+                        "surface-tint": "#a7c8ff",
+                        "surface-dim": "#001428",
+                        "tertiary-container": "#709e2a",
+                        "on-surface-variant": "#c1c6d5",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#001c3b",
+                        "primary": "#a7c8ff",
+                        "on-tertiary-fixed": "#111f00",
+                        "on-primary-fixed-variant": "#004788",
+                        "secondary-container": "#204972",
+                        "primary-container": "#3991fa",
+                        "inverse-primary": "#005eb2",
+                        "surface-bright": "#273b51",
+                        "background": "#001428",
+                        "on-surface": "#d1e4ff",
+                        "on-secondary-fixed-variant": "#204972",
+                        "tertiary-fixed": "#bff375",
+                        "on-secondary-container": "#93b8e7",
+                        "secondary-fixed": "#d2e4ff",
+                        "secondary-fixed-dim": "#a4c9f9",
+                        "surface-container-low": "#061d31",
+                        "on-secondary": "#003259",
+                        "surface-container-lowest": "#000f20",
+                        "on-background": "#d1e4ff",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#1d3247",
+                        "surface": "#001428",
+                        "on-tertiary-fixed-variant": "#324f00",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8b919e",
+                        "tertiary-fixed-dim": "#a4d65c",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "on-primary": "#003060",
+                        "on-secondary-fixed": "#001c37",
+                        "surface-container-highest": "#22364c",
+                        "on-error": "#690005",
+                        "on-tertiary": "#213600",
+                        "surface-variant": "#22364c",
+                        "tertiary": "#a4d65c",
+                        "surface-container": "#0b2136",
+                        "surface-container-high": "#172b41",
+                        "secondary": "#a4c9f9",
+                        "inverse-surface": "#d1e4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #001428; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { backdrop-filter: blur(16px); background: rgba(34, 54, 76, 0.4); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full bg-[#001428] shadow-[0_32px_64px_rgba(0,20,40,0.06)] px-6 py-3 flex justify-between items-center border-none">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black italic tracking-tighter text-[#a7c8ff] font-['Inter']">MIDNIGHT ARENA</span>
+<div class="hidden md:flex gap-6 text-sm font-medium">
+<a class="text-slate-400 hover:bg-[#22364c] transition-colors duration-300 px-3 py-1 rounded" href="#">Sportsbook</a>
+<a class="text-slate-400 hover:bg-[#22364c] transition-colors duration-300 px-3 py-1 rounded" href="#">Live Betting</a>
+<a class="text-[#a7c8ff] border-b-2 border-[#a7c8ff] px-3 py-1" href="#">Deposits</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end mr-2">
+<span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Main Balance</span>
+<span class="text-[#a7c8ff] font-black text-lg">$1,250.00</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-bold text-sm scale-95 active:opacity-80 transition-transform">Deposit</button>
+<div class="flex items-center gap-3 ml-2">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer">notifications</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container/30">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a confident expression in low key cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtD3HrBChDyIEk922iKrQmiw_0bGS9WSDLP77Ev4UsaPyoK4bkBNhqCf9aJBcJ-BU7zmmDysyQoQGD32qjrqH_7DbIWcnBhbrqAQNIR-IlziolfeXL8CIcuBowFm-0d7GSHnXHYFyaPgIKBuRQPehWwFbwl50Caud2PmuKbS9Yf2zGRH2bZ_pLGUgCgaS--hkhjT67vOkkkGI_djvOoRJ4I-nKjveU1QYvVSE_71biCOUSvvS9ZaEHa2KWxM3Ov2RNZVJpT90gWoRS"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 bg-[#001428]/95 backdrop-blur-xl flex flex-col pt-24 z-40 border-r-0 transition-all duration-200">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 p-3 bg-surface-container-high rounded-xl">
+<div class="w-8 h-8 bg-tertiary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<div class="text-sm font-bold text-primary">VIP Platinum</div>
+<div class="text-[10px] uppercase tracking-tighter text-slate-400">Premium Account</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-white hover:bg-[#061d31] hover:translate-x-1 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">sports</span>
+<span class="font-['Inter'] font-medium text-sm">Sportsbook</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-white hover:bg-[#061d31] hover:translate-x-1 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">live_tv</span>
+<span class="font-['Inter'] font-medium text-sm">Live Betting</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-white hover:bg-[#061d31] hover:translate-x-1 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">receipt_long</span>
+<span class="font-['Inter'] font-medium text-sm">My Bets</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-[#22364c] text-[#a7c8ff] rounded-r-lg border-l-4 border-[#3991fa] group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-['Inter'] font-medium text-sm">Deposits</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-white hover:bg-[#061d31] hover:translate-x-1 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">payments</span>
+<span class="font-['Inter'] font-medium text-sm">Withdrawals</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 hover:text-white hover:bg-[#061d31] hover:translate-x-1 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">redeem</span>
+<span class="font-['Inter'] font-medium text-sm">Promotions</span>
+</a>
+</div>
+<div class="mt-auto p-6 space-y-2 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 text-slate-400 text-sm hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 text-slate-400 text-sm hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">help_outline</span> Support
+            </a>
+<a class="flex items-center gap-3 text-error text-sm hover:opacity-80 transition-opacity pt-2" href="#">
+<span class="material-symbols-outlined text-lg">logout</span> Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-20 min-h-screen">
+<div class="max-w-[1400px] mx-auto p-8 lg:p-12">
+<header class="mb-12">
+<h1 class="text-4xl font-black tracking-tight text-on-surface mb-2">Deposit Funds</h1>
+<p class="text-on-surface-variant font-medium">Add balance to your wallet instantly to keep the action going.</p>
+</header>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Summary & History -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="surface-container-low p-8 rounded-2xl relative overflow-hidden group transition-all duration-300 hover:surface-container">
+<div class="relative z-10">
+<span class="text-sm font-bold uppercase tracking-widest text-slate-400 block mb-4">Total Deposited</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-primary">$42,500.00</span>
+<span class="text-tertiary font-bold text-sm">+12% this month</span>
+</div>
+</div>
+<!-- Background Accent -->
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+</div>
+<div class="surface-container-low p-8 rounded-2xl relative overflow-hidden group transition-all duration-300 hover:surface-container">
+<div class="relative z-10">
+<span class="text-sm font-bold uppercase tracking-widest text-slate-400 block mb-4">Pending Deposits</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-white">$250.00</span>
+<span class="flex items-center gap-1 text-tertiary-fixed-dim text-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                                        Processing
+                                    </span>
+</div>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+</div>
+</div>
+</div>
+<!-- Transaction History -->
+<div class="surface-container-low rounded-2xl overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center border-b border-outline-variant/5">
+<h2 class="text-xl font-bold tracking-tight">Recent Transactions</h2>
+<button class="text-sm font-bold text-primary hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto no-scrollbar">
+<table class="w-full text-left">
+<thead class="bg-surface-container-highest/30 text-[10px] uppercase tracking-widest text-slate-400">
+<tr>
+<th class="px-8 py-4">Transaction ID</th>
+<th class="px-8 py-4">Method</th>
+<th class="px-8 py-4">Date</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4 text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="px-8 py-6 font-mono text-sm text-on-surface-variant">#TXN-982415</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-blue-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-blue-400">credit_card</span>
+</div>
+<span class="text-sm font-medium">Visa Card **** 4212</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-slate-400">Oct 24, 2023 • 14:22</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary text-[10px] font-black uppercase rounded-full tracking-wider">Completed</span>
+</td>
+<td class="px-8 py-6 text-right font-black text-on-surface">$500.00</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="px-8 py-6 font-mono text-sm text-on-surface-variant">#TXN-982390</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-yellow-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-yellow-500">currency_bitcoin</span>
+</div>
+<span class="text-sm font-medium">BTC Wallet</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-slate-400">Oct 23, 2023 • 09:15</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase rounded-full tracking-wider">Pending</span>
+</td>
+<td class="px-8 py-6 text-right font-black text-on-surface">$250.00</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/20 transition-colors">
+<td class="px-8 py-6 font-mono text-sm text-on-surface-variant">#TXN-982101</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-purple-500/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-purple-400">account_balance</span>
+</div>
+<span class="text-sm font-medium">Direct Bank Transfer</span>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-slate-400">Oct 21, 2023 • 18:45</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary text-[10px] font-black uppercase rounded-full tracking-wider">Completed</span>
+</td>
+<td class="px-8 py-6 text-right font-black text-on-surface">$1,200.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: New Deposit Form -->
+<div class="col-span-12 lg:col-span-4">
+<div class="glass-panel p-8 rounded-3xl sticky top-28 border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-2xl bg-primary-container flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-on-primary-container">add_card</span>
+</div>
+<h2 class="text-2xl font-black tracking-tight">New Request</h2>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Deposit Amount ($)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-4 pl-12 pr-4 text-xl font-black focus:ring-2 focus:ring-primary/20 transition-all text-primary placeholder:text-slate-600" placeholder="0.00" type="text"/>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+</div>
+<div class="flex gap-2 mt-3">
+<button class="flex-1 py-2 text-xs font-bold rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant border border-outline-variant/10" type="button">+100</button>
+<button class="flex-1 py-2 text-xs font-bold rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant border border-outline-variant/10" type="button">+500</button>
+<button class="flex-1 py-2 text-xs font-bold rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant border border-outline-variant/10" type="button">MAX</button>
+</div>
+</div>
+<div>
+<label class="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">Transaction ID / Reference</label>
+<input class="w-full bg-surface-container-highest border-none rounded-xl py-4 px-4 font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-slate-600" placeholder="Enter TXN reference..." type="text"/>
+<p class="mt-2 text-[10px] text-slate-500 leading-relaxed italic">Verification takes 5-30 minutes depending on the network.</p>
+</div>
+<div class="space-y-3 pt-4">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container font-black rounded-xl shadow-lg shadow-primary-container/20 hover:scale-[1.02] active:scale-95 transition-all text-center">
+                                    Submit Deposit Request
+                                </button>
+<button class="w-full py-3 text-slate-400 font-bold text-sm hover:text-white transition-colors" type="button">
+                                    Cancel Request
+                                </button>
+</div>
+</form>
+<div class="mt-8 pt-8 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 p-4 bg-tertiary/5 rounded-2xl">
+<span class="material-symbols-outlined text-tertiary">verified_user</span>
+<div class="text-[11px] text-on-surface-variant leading-tight">
+<strong>Secured Transaction:</strong> Your funds are protected by 256-bit bank-grade encryption.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 right-0 -z-10 w-full h-full pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-tertiary/5 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

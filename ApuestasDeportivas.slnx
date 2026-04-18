@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ApuestasDeportivas.Api/ApuestasDeportivas.Api.csproj" />
+  <Project Path="ApuestasDeportivas.Application/ApuestasDeportivas.Application.csproj" />
+  <Project Path="ApuestasDeportivas.Contracts/ApuestasDeportivas.Contracts.csproj" />
+  <Project Path="ApuestasDeportivas.Domain/ApuestasDeportivas.Domain.csproj" />
+  <Project Path="ApuestasDeportivas.Infrastructure/ApuestasDeportivas.Infrastructure.csproj" />
+</Solution>

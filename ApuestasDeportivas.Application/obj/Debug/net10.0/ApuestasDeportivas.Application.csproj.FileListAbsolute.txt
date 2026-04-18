@@ -1,0 +1,17 @@
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.AssemblyInfoInputs.cache
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.AssemblyInfo.cs
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Application.deps.json
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Application.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Application.pdb
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Contracts.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Domain.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Domain.pdb
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\bin\Debug\net10.0\ApuestasDeportivas.Contracts.pdb
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\Apuestas.440A09C6.Up2Date
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\refint\ApuestasDeportivas.Application.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.pdb
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ref\ApuestasDeportivas.Application.dll

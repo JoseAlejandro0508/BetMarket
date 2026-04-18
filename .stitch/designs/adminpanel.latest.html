@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC MIDNIGHT | Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#22364c",
+                        "on-primary": "#003060",
+                        "on-surface": "#d1e4ff",
+                        "surface": "#001428",
+                        "primary-container": "#3991fa",
+                        "error-container": "#93000a",
+                        "on-secondary-container": "#93b8e7",
+                        "on-primary-fixed-variant": "#004788",
+                        "on-primary-fixed": "#001c3b",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "secondary-container": "#204972",
+                        "inverse-primary": "#005eb2",
+                        "on-tertiary": "#213600",
+                        "on-tertiary-fixed": "#111f00",
+                        "outline-variant": "#414753",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#c1c6d5",
+                        "tertiary-fixed": "#bff375",
+                        "surface-variant": "#22364c",
+                        "on-tertiary-container": "#1c2f00",
+                        "inverse-surface": "#d1e4ff",
+                        "outline": "#8b919e",
+                        "on-secondary-fixed-variant": "#204972",
+                        "on-tertiary-fixed-variant": "#324f00",
+                        "surface-bright": "#273b51",
+                        "surface-tint": "#a7c8ff",
+                        "surface-container-high": "#172b41",
+                        "secondary": "#a4c9f9",
+                        "surface-container": "#0b2136",
+                        "tertiary-fixed-dim": "#a4d65c",
+                        "background": "#001428",
+                        "on-secondary": "#003259",
+                        "on-background": "#d1e4ff",
+                        "on-primary-container": "#002a54",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container-low": "#061d31",
+                        "tertiary-container": "#709e2a",
+                        "tertiary": "#a4d65c",
+                        "surface-container-lowest": "#000f20",
+                        "on-secondary-fixed": "#001c37",
+                        "inverse-on-surface": "#1d3247",
+                        "surface-dim": "#001428",
+                        "secondary-fixed-dim": "#a4c9f9",
+                        "primary": "#a7c8ff",
+                        "secondary-fixed": "#d2e4ff",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(34, 54, 76, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #22364c;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30 min-h-screen overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-6 w-full fixed top-0 bg-[#001428] z-50 shadow-2xl shadow-blue-900/20">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black italic tracking-tighter text-white uppercase">KINETIC MIDNIGHT</span>
+<div class="hidden md:flex items-center gap-6 font-['Inter'] text-sm tracking-tight">
+<span class="text-white border-b-2 border-blue-500 pb-1 cursor-pointer transition-transform active:scale-95">Dashboard</span>
+<span class="text-blue-200/60 hover:text-white transition-colors duration-200 cursor-pointer">Live Analytics</span>
+<span class="text-blue-200/60 hover:text-white transition-colors duration-200 cursor-pointer">Risk Management</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3 mr-4">
+<span class="material-symbols-outlined text-blue-200/60 cursor-pointer hover:text-white" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-blue-200/60 cursor-pointer hover:text-white" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="material-symbols-outlined text-blue-200/60 cursor-pointer hover:text-white" data-icon="help">help</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-sm font-bold uppercase tracking-wider cursor-pointer active:scale-95 transition-transform">Deposit</button>
+<div class="flex items-center gap-3 pl-4 border-l border-blue-900/30">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-white uppercase">Admin User</p>
+<p class="text-[10px] text-blue-400">Master Controller</p>
+</div>
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full border border-primary/20 object-cover" data-alt="close-up portrait of a professional man with a sharp undercut and tailored dark suit, soft studio lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiTmt5paXppgbW0e6YYEOdkFMH42U0lJzhIdb5lzwq9da1pdT32kBsmGH5w28kKtkbp3sjCPh4OlPGhUfegi126pxMYKJNIY3QpTn9VmAEGLvTb8amnkwn_347IQYnEmB4XxwE2LYZMer13VQDGIZN8oH3kMhG9Exy1nc49-i_YMeIOAj5EGjl3foDchlRjQsMbVqtfNiLbKSt5LK9rL4ypVO1k22GDbdWKlbweg2sIz6C8KEQlG1CD_It1yMmMNQr1jQ5KA634MdW"/>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar Left -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-[#001428]/80 backdrop-blur-xl border-r border-blue-900/15 flex flex-col pt-4 overflow-y-auto hidden lg:flex">
+<div class="px-6 mb-6">
+<h3 class="font-['Inter'] font-medium text-xs uppercase tracking-widest text-blue-400">NAVIGATION</h3>
+<p class="text-[10px] text-blue-100/40 uppercase tracking-tighter">System Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="group cursor-pointer text-blue-100/40 py-3 px-6 my-1 hover:bg-blue-900/30 hover:text-white transition-all flex items-center gap-4">
+<span class="material-symbols-outlined text-lg" data-icon="grid_view">grid_view</span>
+<span class="font-['Inter'] font-medium text-xs uppercase tracking-widest">Overview</span>
+</div>
+<div class="group cursor-pointer bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-r-full py-3 px-6 my-1 flex items-center gap-4">
+<span class="material-symbols-outlined text-lg" data-icon="pending_actions">pending_actions</span>
+<span class="font-['Inter'] font-medium text-xs uppercase tracking-widest">Pending Bets</span>
+</div>
+<div class="group cursor-pointer text-blue-100/40 py-3 px-6 my-1 hover:bg-blue-900/30 hover:text-white transition-all flex items-center gap-4">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+<span class="font-['Inter'] font-medium text-xs uppercase tracking-widest">Users</span>
+</div>
+<div class="group cursor-pointer text-blue-100/40 py-3 px-6 my-1 hover:bg-blue-900/30 hover:text-white transition-all flex items-center gap-4">
+<span class="material-symbols-outlined text-lg" data-icon="payments">payments</span>
+<span class="font-['Inter'] font-medium text-xs uppercase tracking-widest">Transactions</span>
+</div>
+<div class="group cursor-pointer text-blue-100/40 py-3 px-6 my-1 hover:bg-blue-900/30 hover:text-white transition-all flex items-center gap-4">
+<span class="material-symbols-outlined text-lg" data-icon="bar_chart">bar_chart</span>
+<span class="font-['Inter'] font-medium text-xs uppercase tracking-widest">Reports</span>
+</div>
+</nav>
+<div class="mt-auto p-4 border-t border-blue-900/10">
+<div class="group cursor-pointer text-blue-100/40 py-2 px-6 hover:text-white transition-all flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Settings</span>
+</div>
+<div class="group cursor-pointer text-blue-100/40 py-2 px-6 hover:text-white transition-all flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="contact_support">contact_support</span>
+<span class="font-['Inter'] font-medium text-[10px] uppercase tracking-widest">Support</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 lg:mr-80 min-h-[calc(100vh-64px)] p-8">
+<div class="max-w-7xl mx-auto">
+<header class="mb-8 flex justify-between items-end">
+<div>
+<h1 class="text-4xl font-black text-white tracking-tighter uppercase mb-2">Pending Bets</h1>
+<p class="text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_#a4d65c]"></span>
+                            Active Monitoring: 124 slips awaiting resolution
+                        </p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-low p-1 rounded-lg flex">
+<button class="px-4 py-2 bg-surface-container-highest text-white text-xs font-bold rounded shadow-sm uppercase tracking-wider">All Sports</button>
+<button class="px-4 py-2 text-on-surface-variant text-xs font-bold uppercase tracking-wider hover:text-white transition-colors">High Stakes</button>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg flex items-center gap-3 border border-outline-variant/10">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none text-xs text-white placeholder:text-on-surface-variant/50 focus:ring-0 w-48" placeholder="Search by ID or User..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Data Table Card -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-2xl">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/50 border-b border-outline-variant/10">
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">ID</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">User</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Event</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Selection</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Stake</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Odds</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest">Potential Payout</th>
+<th class="px-6 py-4 text-[10px] font-bold text-blue-400 uppercase tracking-widest text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-blue-100/60">#KB-99201</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-[10px] font-bold">JD</div>
+<div>
+<p class="text-xs font-bold text-white">James Donovan</p>
+<p class="text-[10px] text-on-surface-variant">Tier: Gold</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs font-bold text-white uppercase">Lakers vs Warriors</p>
+<p class="text-[10px] text-tertiary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span> Live Q3
+                                        </p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container/10 text-primary-container px-2 py-1 rounded text-[10px] font-black uppercase">Lakers (-4.5)</span>
+</td>
+<td class="px-6 py-5 text-xs font-medium text-white">$500.00</td>
+<td class="px-6 py-5 text-xs font-black text-secondary">1.95</td>
+<td class="px-6 py-5 text-xs font-black text-tertiary">$975.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="bg-tertiary-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Won</button>
+<button class="bg-error-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Lost</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-blue-100/60">#KB-99205</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 text-[10px] font-bold">SM</div>
+<div>
+<p class="text-xs font-bold text-white">Sarah Miller</p>
+<p class="text-[10px] text-on-surface-variant">Tier: Pro</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs font-bold text-white uppercase">Man City vs Arsenal</p>
+<p class="text-[10px] text-on-surface-variant flex items-center gap-1">
+                                            Starts in 12m
+                                        </p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container/10 text-primary-container px-2 py-1 rounded text-[10px] font-black uppercase">Over 2.5 Goals</span>
+</td>
+<td class="px-6 py-5 text-xs font-medium text-white">$2,500.00</td>
+<td class="px-6 py-5 text-xs font-black text-secondary">2.10</td>
+<td class="px-6 py-5 text-xs font-black text-tertiary">$5,250.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="bg-tertiary-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Won</button>
+<button class="bg-error-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Lost</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-blue-100/60">#KB-99210</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 text-[10px] font-bold">RK</div>
+<div>
+<p class="text-xs font-bold text-white">Robert Kane</p>
+<p class="text-[10px] text-on-surface-variant">Tier: New</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs font-bold text-white uppercase">Nadal vs Djokovic</p>
+<p class="text-[10px] text-tertiary flex items-center gap-1">
+<span class="w-1 h-1 rounded-full bg-tertiary"></span> Live Set 2
+                                        </p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container/10 text-primary-container px-2 py-1 rounded text-[10px] font-black uppercase">Nadal to Win</span>
+</td>
+<td class="px-6 py-5 text-xs font-medium text-white">$125.00</td>
+<td class="px-6 py-5 text-xs font-black text-secondary">3.40</td>
+<td class="px-6 py-5 text-xs font-black text-tertiary">$425.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="bg-tertiary-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Won</button>
+<button class="bg-error-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Lost</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-blue-100/60">#KB-99214</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-teal-500/10 flex items-center justify-center text-teal-400 text-[10px] font-bold">AL</div>
+<div>
+<p class="text-xs font-bold text-white">Alex Lee</p>
+<p class="text-[10px] text-on-surface-variant">Tier: VIP</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<p class="text-xs font-bold text-white uppercase">Chiefs vs Eagles</p>
+<p class="text-[10px] text-on-surface-variant flex items-center gap-1">
+                                            Delayed
+                                        </p>
+</td>
+<td class="px-6 py-5">
+<span class="bg-primary-container/10 text-primary-container px-2 py-1 rounded text-[10px] font-black uppercase">Chiefs -7.0</span>
+</td>
+<td class="px-6 py-5 text-xs font-medium text-white">$1,000.00</td>
+<td class="px-6 py-5 text-xs font-black text-secondary">1.91</td>
+<td class="px-6 py-5 text-xs font-black text-tertiary">$1,910.00</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="bg-tertiary-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Won</button>
+<button class="bg-error-container text-white px-3 py-1.5 rounded-md text-[10px] font-black uppercase tracking-tighter hover:brightness-110 active:scale-95 transition-all">Lost</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-highest/20 border-t border-outline-variant/10 flex justify-between items-center">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Showing 4 of 124 pending bets</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-white border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-white border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">2</button>
+<button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-white border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Admin Insight Cards (Asymmetric Grid) -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="col-span-1 glass-panel p-6 rounded-xl border border-white/5 flex flex-col justify-between">
+<span class="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-4">Payout Liability</span>
+<div class="mb-4">
+<h2 class="text-3xl font-black text-white">$45,204.00</h2>
+<p class="text-[10px] text-error flex items-center gap-1 uppercase mt-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="trending_up">trending_up</span> 14% Risk increase
+                            </p>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1">
+<div class="bg-error h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="col-span-2 bg-[#061d31] p-6 rounded-xl relative overflow-hidden flex items-center justify-between">
+<div class="relative z-10">
+<span class="text-[10px] font-black text-tertiary uppercase tracking-[0.2em] mb-2 block">System Health</span>
+<h2 class="text-2xl font-black text-white uppercase italic tracking-tighter">Bet Engine v2.4.1</h2>
+<p class="text-xs text-on-surface-variant max-w-sm mt-2">The core processing engine is operating at 14ms latency. High volume expected during upcoming World Cup qualifiers.</p>
+<button class="mt-4 text-[10px] font-black text-white bg-blue-600 px-4 py-2 rounded uppercase tracking-widest hover:bg-blue-500 transition-colors">Update Registry</button>
+</div>
+<div class="hidden lg:block opacity-20">
+<span class="material-symbols-outlined text-[120px] text-blue-400" data-icon="dynamic_form">dynamic_form</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- SideNavBar Right (Bet Slip Context) -->
+<aside class="fixed right-0 top-16 h-[calc(100vh-64px)] w-80 bg-[#061d31] shadow-[-10px_0_30px_rgba(0,0,0,0.3)] flex flex-col p-4 z-40 hidden md:flex">
+<div class="flex flex-col mb-6">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-['Inter'] font-bold text-sm text-[#a4d65c] uppercase">Selected Details</h3>
+<span class="bg-[#22364c] text-blue-100/50 text-[10px] px-2 py-0.5 rounded">ID Preview</span>
+</div>
+<p class="text-[10px] text-blue-100/50 uppercase">Select a row to see full bet audit</p>
+</div>
+<div class="flex-1 custom-scrollbar overflow-y-auto space-y-4">
+<div class="p-4 rounded-lg bg-[#22364c]/40 border border-white/5">
+<p class="text-[9px] text-blue-400 uppercase font-black mb-2">Audit Logs</p>
+<div class="space-y-3">
+<div class="flex gap-3">
+<div class="w-1 h-auto bg-tertiary rounded"></div>
+<div>
+<p class="text-[10px] text-white font-bold">Bet Placed</p>
+<p class="text-[9px] text-on-surface-variant">14:02:11 via Mobile API (iOS)</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-1 h-auto bg-blue-500 rounded"></div>
+<div>
+<p class="text-[10px] text-white font-bold">Odds Locked</p>
+<p class="text-[9px] text-on-surface-variant">14:02:12 at 2.10 (Live)</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-1 h-auto bg-outline-variant rounded"></div>
+<div>
+<p class="text-[10px] text-white font-bold">Verification</p>
+<p class="text-[9px] text-on-surface-variant">14:02:15 Fraud engine clear</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-[#22364c]/40 border border-white/5">
+<p class="text-[9px] text-blue-400 uppercase font-black mb-2">User Stats</p>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[8px] text-on-surface-variant uppercase">Win Rate</p>
+<p class="text-sm font-black text-white">64.2%</p>
+</div>
+<div>
+<p class="text-[8px] text-on-surface-variant uppercase">Avg Stake</p>
+<p class="text-sm font-black text-white">$420</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-blue-900/20">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs font-bold text-white uppercase">Bulk Actions</span>
+<span class="text-[10px] text-blue-400">0 Items</span>
+</div>
+<button class="w-full bg-[#a4d65c] text-[#111f00] py-3 rounded font-['Inter'] font-bold text-sm uppercase tracking-widest active:brightness-110 transition-all shadow-[0_4px_12px_rgba(164,214,92,0.2)]">
+                    PROCESS BATCH
+                </button>
+<button class="w-full mt-2 bg-transparent border border-outline-variant/30 text-blue-100/50 py-3 rounded font-['Inter'] font-bold text-[10px] uppercase tracking-widest hover:bg-[#22364c] transition-colors">
+                    EXPORT ALL CSV
+                </button>
+</div>
+</aside>
+</div>
+<!-- Mobile Navigation Overlay (Simplified for Admin Dashboard focus) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-low border-t border-blue-900/20 flex justify-around p-3 z-50">
+<span class="material-symbols-outlined text-blue-400" data-icon="grid_view">grid_view</span>
+<span class="material-symbols-outlined text-white bg-blue-600 rounded-full p-2 -mt-6 shadow-xl" data-icon="pending_actions">pending_actions</span>
+<span class="material-symbols-outlined text-blue-100/40" data-icon="group">group</span>
+<span class="material-symbols-outlined text-blue-100/40" data-icon="settings">settings</span>
+</div>
+</body></html>
