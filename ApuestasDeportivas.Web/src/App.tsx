@@ -5,6 +5,7 @@ import type {
   DepositRequest,
   OddsOffer,
   OddsSyncSettings,
+  AvailableSport,
   OutcomeOdds,
   UserBet,
   UserProfile,
@@ -18,6 +19,9 @@ type ThemeMode = 'light' | 'dark';
 type Section = 'bets' | 'deposits' | 'withdrawals' | 'settings' | 'admin';
 type PaymentMethod = 'CUP' | 'MLC' | 'QvaPay';
 type IconName = 'sun' | 'moon' | 'settings' | 'logout' | 'bets' | 'deposits' | 'withdrawals' | 'admin';
+type SportCategory = 'baseball' | 'basketball' | 'football' | 'other';
+type BetFilter = 'all' | 'baseball' | 'basketball' | 'football';
+type OfferFilter = 'all' | 'baseball' | 'basketball' | 'football';
 
 interface SelectedBet {
   offer: OddsOffer;
@@ -40,6 +44,26 @@ const formatSportLabel = (sportKey: string) => {
     .replace(/^upcoming$/, 'Próximos')
     .replaceAll('_', ' ');
 };
+
+const extractFailedSportKeys = (lastError: string): string[] => {
+  if (!lastError) return [];
+
+  const regex = /Sport '([^']+)'/g;
+  const keys: string[] = [];
+  let match: RegExpExecArray | null = regex.exec(lastError);
+
+  while (match) {
+    const key = match[1]?.trim();
+    if (key && !keys.includes(key)) {
+      keys.push(key);
+    }
+    match = regex.exec(lastError);
+  }
+
+  return keys;
+};
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat('es-ES', {
@@ -64,6 +88,14 @@ const requestStatusLabel = (status: 'Pending' | 'Approved' | 'Rejected') => {
   if (status === 'Pending') return 'Pendiente';
   if (status === 'Approved') return 'Aprobado';
   return 'Rechazado';
+};
+
+const getSportCategory = (sportKey: string): SportCategory => {
+  const normalized = sportKey.toLowerCase();
+  if (normalized.includes('baseball')) return 'baseball';
+  if (normalized.includes('basketball') || normalized.includes('nba')) return 'basketball';
+  if (normalized.includes('soccer') || normalized.includes('football')) return 'football';
+  return 'other';
 };
 
 const Icon = ({ name }: { name: IconName }) => {
@@ -114,11 +146,19 @@ export function App() {
   const [stake, setStake] = useState<string>('100');
 
   const [syncSettings, setSyncSettings] = useState<OddsSyncSettings | null>(null);
-  const [adminSportKey, setAdminSportKey] = useState('upcoming');
+  const [adminSportKey, setAdminSportKey] = useState('multi');
   const [adminAutoRefresh, setAdminAutoRefresh] = useState(false);
   const [adminIntervalSeconds, setAdminIntervalSeconds] = useState('60');
+  const [availableSports, setAvailableSports] = useState<AvailableSport[]>([]);
+  const [selectedSyncSports, setSelectedSyncSports] = useState<string[]>([]);
+  const [syncInProgress, setSyncInProgress] = useState(false);
+  const [syncProgress, setSyncProgress] = useState(0);
+  const [syncProgressLabel, setSyncProgressLabel] = useState('');
+  const [failedSyncSports, setFailedSyncSports] = useState<string[]>([]);
 
   const [section, setSection] = useState<Section>('bets');
+  const [betFilter, setBetFilter] = useState<BetFilter>('all');
+  const [offerFilter, setOfferFilter] = useState<OfferFilter>('all');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -144,6 +184,18 @@ export function App() {
 
   const isAdmin = useMemo(() => roles.includes('Admin'), [roles]);
   const topOffers = useMemo(() => offers.slice(0, 4), [offers]);
+  const filteredOffers = useMemo(() => {
+    const base = offerFilter === 'all'
+      ? offers
+      : offers.filter((offer) => getSportCategory(offer.sportKey) === offerFilter);
+
+    return [...base].sort((a, b) => new Date(a.commenceTime).getTime() - new Date(b.commenceTime).getTime());
+  }, [offers, offerFilter]);
+
+  const filteredMyBets = useMemo(() => {
+    if (betFilter === 'all') return myBets;
+    return myBets.filter((bet) => getSportCategory(bet.sportKey) === betFilter);
+  }, [myBets, betFilter]);
 
   const totalDeposited = useMemo(() => walletSummary?.totalDeposited ?? 0, [walletSummary]);
   const pendingDeposits = useMemo(() => walletSummary?.pendingDeposits ?? 0, [walletSummary]);
@@ -211,7 +263,7 @@ export function App() {
     try {
       const [profileResult, offersResult, myBetsResult, summaryResult, depositsResult, withdrawalsResult, settingsResult] = await Promise.allSettled([
         authApi.me(),
-        oddsApi.getOffers(),
+        oddsApi.getOffers('multi'),
         betsApi.myBets(),
         walletApi.summary(),
         walletApi.deposits(),
@@ -267,10 +319,15 @@ export function App() {
 
         if (syncResult.status === 'fulfilled') {
           setSyncSettings(syncResult.value);
-          setAdminSportKey(syncResult.value.currentSportKey || 'upcoming');
+          setAdminSportKey(syncResult.value.currentSportKey || 'multi');
           setAdminAutoRefresh(syncResult.value.autoRefreshEnabled);
           setAdminIntervalSeconds(String(syncResult.value.refreshIntervalSeconds));
+          setSelectedSyncSports(syncResult.value.selectedSportKeys ?? []);
+          setFailedSyncSports(extractFailedSportKeys(syncResult.value.lastError ?? ''));
         }
+
+        const sportsResult = await oddsApi.getAvailableSports();
+        setAvailableSports(sportsResult);
       } else {
         setPendingBets([]);
       }
@@ -374,14 +431,52 @@ export function App() {
   };
 
   const handleAdminRefresh = async () => {
+    const sportKeys = selectedSyncSports.length > 0
+      ? [...selectedSyncSports]
+      : [...(syncSettings?.selectedSportKeys ?? [])];
+
+    if (sportKeys.length === 0) {
+      setMessage('Selecciona al menos un sport key para ejecutar sync.');
+      return;
+    }
+
     try {
       setLoading(true);
-      await oddsApi.refreshNow(adminSportKey || 'upcoming');
-      setMessage('Ofertas sincronizadas desde The Odds API.');
+      setSyncInProgress(true);
+      setSyncProgress(0);
+      setFailedSyncSports([]);
+
+      const failed: string[] = [];
+      const total = sportKeys.length;
+
+      for (let index = 0; index < total; index += 1) {
+        const sportKey = sportKeys[index];
+        setSyncProgressLabel(`Sincronizando ${sportKey} (${index + 1}/${total})`);
+
+        try {
+          await oddsApi.refreshNow(sportKey);
+        } catch {
+          failed.push(sportKey);
+        }
+
+        setSyncProgress(Math.round(((index + 1) / total) * 100));
+        await sleep(120);
+      }
+
+      setFailedSyncSports(failed);
+      setSyncProgressLabel(failed.length > 0 ? 'Sync finalizado con incidencias' : 'Sync finalizado correctamente');
+
+      if (failed.length > 0) {
+        setMessage(`Sync completado con errores. Sport keys fallidos: ${failed.join(', ')}`);
+      } else {
+        setMessage(`Sync completado sin errores (${total}/${total} sport keys).`);
+      }
+
       await refreshData();
     } catch (error: any) {
       setMessage(error?.response?.data?.message ?? 'No se pudo refrescar odds.');
     } finally {
+      setSyncInProgress(false);
       setLoading(false);
     }
   };
@@ -392,7 +487,8 @@ export function App() {
       await oddsApi.updateSyncSettings({
         autoRefreshEnabled: adminAutoRefresh,
         refreshIntervalSeconds: Number(adminIntervalSeconds) || 60,
-        sportKey: adminSportKey || 'upcoming',
+        sportKey: 'multi',
+        selectedSportKeys: selectedSyncSports,
       });
       setMessage('Configuración de sync guardada.');
       await refreshData();
@@ -404,6 +500,15 @@ export function App() {
   };
 
   const toggleTheme = () => setTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+
+  const toggleSyncSport = (sportKey: string) => {
+    setSelectedSyncSports((current) => {
+      if (current.includes(sportKey)) {
+        return current.filter((k) => k !== sportKey);
+      }
+      return [...current, sportKey];
+    });
+  };
 
   const createDeposit = async () => {
     const amount = Number(depositAmount);
@@ -624,16 +729,23 @@ export function App() {
                 <div className="live-board">
                   <header>
                     <h2>Live Now</h2>
-                    <span>{offers.length} eventos</span>
+                    <span>{filteredOffers.length} eventos</span>
                   </header>
 
-                  {offers.length === 0 ? (
+                  <div className="live-filter-row" role="group" aria-label="Filtrar ofertas por deporte">
+                    <button type="button" className={offerFilter === 'all' ? 'active' : ''} onClick={() => setOfferFilter('all')}>All</button>
+                    <button type="button" className={offerFilter === 'football' ? 'active' : ''} onClick={() => setOfferFilter('football')}>Football</button>
+                    <button type="button" className={offerFilter === 'basketball' ? 'active' : ''} onClick={() => setOfferFilter('basketball')}>NBA Basket</button>
+                    <button type="button" className={offerFilter === 'baseball' ? 'active' : ''} onClick={() => setOfferFilter('baseball')}>Baseball</button>
+                  </div>
+
+                  {filteredOffers.length === 0 ? (
                     <div className="empty-card">No hay ofertas disponibles.</div>
                   ) : (
-                    offers.map((offer) => {
+                    filteredOffers.map((offer) => {
                       const market = offer.bookmaker.markets.find((m) => m.key === 'h2h') ?? offer.bookmaker.markets[0];
                       return (
-                        <article key={offer.eventId} className="event-card">
+                        <article key={offer.eventId} className={`event-card sport-${getSportCategory(offer.sportKey)}`}>
                           <div className="event-meta">
                             <span>{formatSportLabel(offer.sportKey)}</span>
                             <span>{formatDateTime(offer.commenceTime)}</span>
@@ -684,13 +796,19 @@ export function App() {
                   <section className="my-bets-mini">
                     <header>
                       <h4>Mis apuestas</h4>
-                      <span>{myBets.length}</span>
+                      <span>{filteredMyBets.length}</span>
                     </header>
+                    <div className="bets-filter-row">
+                      <button type="button" className={betFilter === 'all' ? 'active' : ''} onClick={() => setBetFilter('all')}>All</button>
+                      <button type="button" className={betFilter === 'baseball' ? 'active' : ''} onClick={() => setBetFilter('baseball')}>Baseball</button>
+                      <button type="button" className={betFilter === 'basketball' ? 'active' : ''} onClick={() => setBetFilter('basketball')}>NBA Basket</button>
+                      <button type="button" className={betFilter === 'football' ? 'active' : ''} onClick={() => setBetFilter('football')}>Football</button>
+                    </div>
                     <div className="mini-list">
-                      {myBets.length === 0 ? (
+                      {filteredMyBets.length === 0 ? (
                         <div className="empty-card">No tienes apuestas.</div>
                       ) : (
-                        myBets.map((bet) => (
+                        filteredMyBets.map((bet) => (
                           <article key={bet.id} className={`mini-item ${bet.status.toLowerCase()}`}>
                             <div>
                               <strong>{bet.homeTeam} vs {bet.awayTeam}</strong>
@@ -915,7 +1033,7 @@ export function App() {
                   <p>Active Monitoring: {pendingBets.length} slips awaiting resolution</p>
                 </div>
                 <div className="admin-controls-inline">
-                  <input value={adminSportKey} onChange={(event) => setAdminSportKey(event.target.value)} placeholder="upcoming" />
+                  <input value={adminSportKey} onChange={(event) => setAdminSportKey(event.target.value)} placeholder="multi" readOnly />
                   <input type="number" min="15" step="1" value={adminIntervalSeconds} onChange={(event) => setAdminIntervalSeconds(event.target.value)} />
                   <label className="inline-switch">
                     <span>Auto</span>
@@ -925,6 +1043,33 @@ export function App() {
                   <button type="button" onClick={handleAdminRefresh}>Refresh</button>
                 </div>
               </header>
+
+              <section className="history-card sync-progress-card">
+                <header>
+                  <h2>Estado del Sync</h2>
+                  <span>{syncInProgress ? `${syncProgress}%` : 'Idle'}</span>
+                </header>
+
+                <div className="sync-progress-wrap" role="status" aria-live="polite">
+                  <div className="sync-progress-track">
+                    <div className="sync-progress-fill" style={{ width: `${syncProgress}%` }} />
+                  </div>
+                  <p>{syncProgressLabel || 'Sin ejecuciones recientes.'}</p>
+                </div>
+
+                <div className="sync-failed-keys">
+                  <h3>Sport keys fallidos</h3>
+                  {failedSyncSports.length === 0 ? (
+                    <span className="empty-chip">Sin errores reportados.</span>
+                  ) : (
+                    <div className="selected-sports-chips">
+                      {failedSyncSports.map((key) => (
+                        <span key={`failed-${key}`} className="sport-chip failed">{key}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </section>
 
               <section className="history-card">
                 <div className="table-wrap">
@@ -963,6 +1108,50 @@ export function App() {
                       )}
                     </tbody>
                   </table>
+                </div>
+              </section>
+
+              <section className="history-card admin-sports-config">
+                <header>
+                  <h2>Sports Keys para Sync</h2>
+                  <span>{selectedSyncSports.length} seleccionados</span>
+                </header>
+
+                <div className="sports-selection-wrap">
+                  <div className="selected-sports-chips">
+                    {selectedSyncSports.length === 0 ? (
+                      <span className="empty-chip">No has seleccionado deportes para sync.</span>
+                    ) : (
+                      selectedSyncSports.map((sport) => (
+                        <button key={`sel-${sport}`} type="button" className="sport-chip selected" onClick={() => toggleSyncSport(sport)}>
+                          {sport}
+                        </button>
+                      ))
+                    )}
+                  </div>
+
+                  <div className="sports-list-grid">
+                    {availableSports.length === 0 ? (
+                      <div className="empty-card">No hay deportes disponibles desde Odds API.</div>
+                    ) : (
+                      availableSports.map((sport) => {
+                        const isSelected = selectedSyncSports.includes(sport.key);
+                        return (
+                          <article key={sport.key} className={isSelected ? 'sport-option selected' : 'sport-option'}>
+                            <div>
+                              <h4>{sport.title}</h4>
+                              <p>{sport.description}</p>
+                              <small>{sport.group}</small>
+                              <code>{sport.key}</code>
+                            </div>
+                            <button type="button" onClick={() => toggleSyncSport(sport.key)}>
+                              {isSelected ? 'Quitar' : 'Agregar'}
+                            </button>
+                          </article>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
               </section>
 

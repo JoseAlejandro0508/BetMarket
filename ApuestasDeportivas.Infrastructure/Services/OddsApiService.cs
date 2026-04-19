@@ -53,6 +53,38 @@ public class OddsApiService : IOddsService
         return offers;
     }
 
+    public async Task<IReadOnlyCollection<AvailableSportDto>> GetAvailableSportsAsync(CancellationToken cancellationToken = default)
+    {
+        var apiKey = _configuration["OddsApi:ApiKey"];
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            throw new InvalidOperationException("No se configuró OddsApi:ApiKey.");
+        }
+
+        var endpoint = $"v4/sports/?apiKey={apiKey}";
+        using var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+        var content = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new InvalidOperationException($"The Odds API devolvió {(int)response.StatusCode}: {content}");
+        }
+
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        var sports = JsonSerializer.Deserialize<List<OddsApiSport>>(content, options) ?? new List<OddsApiSport>();
+
+        return sports
+            .Where(x => !string.IsNullOrWhiteSpace(x.Key))
+            .Select(x => new AvailableSportDto(
+                x.Key ?? string.Empty,
+                x.Group ?? string.Empty,
+                x.Title ?? x.Key ?? string.Empty,
+                x.Description ?? string.Empty))
+            .OrderBy(x => x.Group)
+            .ThenBy(x => x.Title)
+            .ToList();
+    }
+
     private static OddsOfferDto? MapEvent(OddsApiEvent apiEvent)
     {
         var bookmaker = apiEvent.Bookmakers?
@@ -147,5 +179,20 @@ public class OddsApiService : IOddsService
 
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
+    }
+
+    private sealed class OddsApiSport
+    {
+        [JsonPropertyName("key")]
+        public string? Key { get; set; }
+
+        [JsonPropertyName("group")]
+        public string? Group { get; set; }
+
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
     }
 }

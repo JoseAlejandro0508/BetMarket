@@ -4,6 +4,7 @@ import type {
   DepositRequest,
   OddsOffer,
   OddsSyncSettings,
+  AvailableSport,
   UserBet,
   UserProfile,
   WalletSummary,
@@ -11,7 +12,7 @@ import type {
   WithdrawalSettings,
 } from './types';
 
-const API_BASE_URL = 'http://localhost:5144/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -53,6 +54,7 @@ export const oddsApi = {
     autoRefreshEnabled: boolean;
     refreshIntervalSeconds: number;
     sportKey: string;
+    selectedSportKeys: string[];
   }) => {
     const { data } = await api.put<OddsSyncSettings>('/odds/sync-settings', payload);
     return data;
@@ -61,6 +63,10 @@ export const oddsApi = {
     const { data } = await api.post<OddsSyncSettings>('/odds/refresh', null, {
       params: sportKey ? { sportKey } : undefined,
     });
+    return data;
+  },
+  getAvailableSports: async () => {
+    const { data } = await api.get<AvailableSport[]>('/odds/sports/available');
     return data;
   },
 };

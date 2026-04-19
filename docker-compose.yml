@@ -1,0 +1,34 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ApuestasDeportivas.Api/Dockerfile
+    container_name: apuestas_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: Data Source=/data/apuestasdeportivas.db
+      Jwt__Secret: ${JWT_SECRET:-CAMBIAR_ESTE_SECRETO_EN_PROD_1234567890}
+      Jwt__Issuer: ApuestasDeportivas.Api
+      Jwt__Audience: ApuestasDeportivas.Web
+      Jwt__ExpiryMinutes: 240
+      OddsApi__ApiKey: ${ODDS_API_KEY}
+      OddsSync__DefaultIntervalSeconds: 60
+      Seed__AdminEmail: ${SEED_ADMIN_EMAIL:-admin@apuestas.local}
+      Seed__AdminPassword: ${SEED_ADMIN_PASSWORD:-Admin123!}
+    volumes:
+      - apuestas_data:/data
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./ApuestasDeportivas.Web
+      dockerfile: Dockerfile
+    container_name: apuestas_web
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  apuestas_data:

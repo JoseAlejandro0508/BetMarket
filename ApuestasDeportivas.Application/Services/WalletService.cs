@@ -51,11 +51,12 @@ public class WalletService
     {
         var deposits = await _dbContext.DepositRequests
             .Where(x => x.UserId == userId)
-            .OrderByDescending(x => x.CreatedAt)
             .Select(x => new DepositRequestDto(x.Id, x.Amount, x.TransactionId, x.Status.ToString(), x.CreatedAt))
             .ToListAsync(cancellationToken);
 
-        return deposits;
+        return deposits
+            .OrderByDescending(x => x.CreatedAt)
+            .ToList();
     }
 
     public async Task<DepositRequestDto> CreateDepositAsync(string userId, CreateDepositRequest request, CancellationToken cancellationToken = default)
@@ -89,11 +90,12 @@ public class WalletService
     {
         var withdrawals = await _dbContext.WithdrawalRequests
             .Where(x => x.UserId == userId)
-            .OrderByDescending(x => x.CreatedAt)
             .Select(x => new WithdrawalRequestDto(x.Id, x.Amount, x.Method.ToString(), x.Account, x.Status.ToString(), x.CreatedAt))
             .ToListAsync(cancellationToken);
 
-        return withdrawals;
+        return withdrawals
+            .OrderByDescending(x => x.CreatedAt)
+            .ToList();
     }
 
     public async Task<WithdrawalRequestDto> CreateWithdrawalAsync(string userId, CreateWithdrawalRequest request, CancellationToken cancellationToken = default)

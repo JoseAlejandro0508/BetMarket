@@ -6,4 +6,5 @@ namespace ApuestasDeportivas.Contracts.Odds;
 public record UpdateOddsSyncSettingsRequest(
     bool AutoRefreshEnabled,
     int RefreshIntervalSeconds,
-    string SportKey);
+    string SportKey,
+    IReadOnlyCollection<string>? SelectedSportKeys = null);

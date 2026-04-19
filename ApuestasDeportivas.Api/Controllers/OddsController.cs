@@ -27,7 +27,7 @@ public class OddsController : ControllerBase
         try
         {
             var key = string.IsNullOrWhiteSpace(sportKey)
-                ? await _oddsService.GetCurrentSportKeyAsync(cancellationToken)
+                ? "multi"
                 : sportKey;
 
             // Nunca consultamos la API al cargar; siempre leemos DB local.
@@ -57,9 +57,18 @@ public class OddsController : ControllerBase
             request.AutoRefreshEnabled,
             request.RefreshIntervalSeconds,
             request.SportKey,
+            request.SelectedSportKeys,
             cancellationToken);
 
         return Ok(settings);
+    }
+
+    [HttpGet("sports/available")]
+    [Authorize(Roles = AppRoles.Admin)]
+    public async Task<ActionResult<IReadOnlyCollection<AvailableSportDto>>> GetAvailableSports(CancellationToken cancellationToken)
+    {
+        var sports = await _oddsService.GetAvailableSportsAsync(cancellationToken);
+        return Ok(sports);
     }
 
     [HttpPost("refresh")]
@@ -67,10 +76,17 @@ public class OddsController : ControllerBase
     public async Task<ActionResult<OddsSyncSettingsDto>> RefreshNow([FromQuery] string? sportKey = null, CancellationToken cancellationToken = default)
     {
         var key = string.IsNullOrWhiteSpace(sportKey)
-            ? await _oddsService.GetCurrentSportKeyAsync(cancellationToken)
+            ? "multi"
             : sportKey;
 
-        var settings = await _oddsService.RefreshOffersAsync(key, cancellationToken);
-        return Ok(settings);
+        try
+        {
+            var settings = await _oddsService.RefreshOffersAsync(key, cancellationToken);
+            return Ok(settings);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 }

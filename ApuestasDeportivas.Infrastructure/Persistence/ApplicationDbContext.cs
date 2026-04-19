@@ -93,8 +93,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>, IApplicationDbCo
             entity.ToTable("OddsSyncSettings");
             entity.HasKey(x => x.Id);
             entity.Property(x => x.RefreshIntervalSeconds).HasDefaultValue(60);
-            entity.Property(x => x.CurrentSportKey).HasMaxLength(120).HasDefaultValue("upcoming");
+            entity.Property(x => x.CurrentSportKey).HasMaxLength(120).HasDefaultValue("multi");
             entity.Property(x => x.LastError).HasMaxLength(1000);
+            entity.Property(x => x.SelectedSportKeysJson).HasDefaultValue("[]");
         });
 
         builder.Entity<DepositRequest>(entity =>

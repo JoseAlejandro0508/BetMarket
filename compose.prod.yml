@@ -1,0 +1,53 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ApuestasDeportivas.Api/Dockerfile
+    container_name: apuestas_api
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Data Source=/data/apuestasdeportivas.db
+      Jwt__Secret: ${JWT_SECRET}
+      Jwt__Issuer: ${JWT_ISSUER:-ApuestasDeportivas.Api}
+      Jwt__Audience: ${JWT_AUDIENCE:-ApuestasDeportivas.Web}
+      Jwt__ExpiryMinutes: ${JWT_EXPIRY_MINUTES:-240}
+      OddsApi__ApiKey: ${ODDS_API_KEY}
+      OddsSync__DefaultIntervalSeconds: ${ODDS_SYNC_DEFAULT_INTERVAL_SECONDS:-60}
+      Seed__AdminEmail: ${SEED_ADMIN_EMAIL}
+      Seed__AdminPassword: ${SEED_ADMIN_PASSWORD}
+    volumes:
+      - apuestas_data:/data
+    networks:
+      - app_net
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./ApuestasDeportivas.Web
+      dockerfile: Dockerfile
+    container_name: apuestas_web
+    depends_on:
+      - api
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.apuestas.rule=Host(`${APP_DOMAIN}`)
+      - traefik.http.routers.apuestas.entrypoints=websecure
+      - traefik.http.routers.apuestas.tls=true
+      - traefik.http.routers.apuestas.tls.certresolver=${TRAEFIK_CERTRESOLVER:-letsencrypt}
+      - traefik.http.services.apuestas.loadbalancer.server.port=80
+    networks:
+      - app_net
+      - proxy
+    restart: unless-stopped
+
+volumes:
+  apuestas_data:
+
+networks:
+  app_net:
+    driver: bridge
+  proxy:
+    external: true

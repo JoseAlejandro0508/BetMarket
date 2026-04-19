@@ -11,4 +11,9 @@ public interface IOddsService
     /// Obtiene una lista de ofertas h2h filtradas por bookmaker onexbet.
     /// </summary>
     Task<IReadOnlyCollection<OddsOfferDto>> GetH2HOffersAsync(string sportKey, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Obtiene todos los deportes disponibles desde The Odds API.
+    /// </summary>
+    Task<IReadOnlyCollection<AvailableSportDto>> GetAvailableSportsAsync(CancellationToken cancellationToken = default);
 }

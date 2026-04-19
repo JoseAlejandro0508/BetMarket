@@ -48,6 +48,14 @@ export interface OddsSyncSettings {
   refreshIntervalSeconds: number;
   lastRefreshAt: string | null;
   lastError: string;
+  selectedSportKeys: string[];
+}
+
+export interface AvailableSport {
+  key: string;
+  group: string;
+  title: string;
+  description: string;
 }
 
 export interface UserBet {

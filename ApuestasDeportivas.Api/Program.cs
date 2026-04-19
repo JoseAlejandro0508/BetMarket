@@ -162,7 +162,29 @@ ON UserWithdrawalSettings(UserId);
     if (!columnExists)
     {
         await dbContext.Database.ExecuteSqlRawAsync(
-            "ALTER TABLE OddsSyncSettings ADD COLUMN CurrentSportKey TEXT NOT NULL DEFAULT 'upcoming';");
+            "ALTER TABLE OddsSyncSettings ADD COLUMN CurrentSportKey TEXT NOT NULL DEFAULT 'multi';");
+    }
+
+    var selectedKeysColumnExists = false;
+    await using (var command = connection.CreateCommand())
+    {
+        command.CommandText = "PRAGMA table_info('OddsSyncSettings');";
+        await using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            var columnName = reader.GetString(1);
+            if (string.Equals(columnName, "SelectedSportKeysJson", StringComparison.OrdinalIgnoreCase))
+            {
+                selectedKeysColumnExists = true;
+                break;
+            }
+        }
+    }
+
+    if (!selectedKeysColumnExists)
+    {
+        await dbContext.Database.ExecuteSqlRawAsync(
+            "ALTER TABLE OddsSyncSettings ADD COLUMN SelectedSportKeysJson TEXT NOT NULL DEFAULT '[]';");
     }
 }
 

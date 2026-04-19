@@ -8,4 +8,5 @@ public record OddsSyncSettingsDto(
     string CurrentSportKey,
     int RefreshIntervalSeconds,
     DateTimeOffset? LastRefreshAt,
-    string LastError);
+    string LastError,
+    IReadOnlyCollection<string> SelectedSportKeys);

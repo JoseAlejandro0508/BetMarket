@@ -1,0 +1,14 @@
+.git
+.github
+.vscode
+.idea
+**/bin
+**/obj
+**/node_modules
+**/dist
+**/.DS_Store
+**/*.user
+**/*.suo
+**/*.swp
+**/*.log
+apuestasdeportivas.db
