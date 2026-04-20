@@ -80,3 +80,4 @@ C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Api\ob
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Api\obj\Debug\net10.0\ApuestasDeportivas.Api.pdb
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Api\obj\Debug\net10.0\ApuestasDeportivas.Api.genruntimeconfig.cache
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Api\obj\Debug\net10.0\ref\ApuestasDeportivas.Api.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Api\obj\Debug\net10.0\ApuestasDeportivas.Api.sourcelink.json

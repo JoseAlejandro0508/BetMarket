@@ -10,3 +10,4 @@ C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Domain
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Domain\obj\Debug\net10.0\refint\ApuestasDeportivas.Domain.dll
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Domain\obj\Debug\net10.0\ApuestasDeportivas.Domain.pdb
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Domain\obj\Debug\net10.0\ref\ApuestasDeportivas.Domain.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Domain\obj\Debug\net10.0\ApuestasDeportivas.Domain.sourcelink.json

@@ -9,3 +9,4 @@ C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Contra
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Contracts\obj\Debug\net10.0\refint\ApuestasDeportivas.Contracts.dll
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Contracts\obj\Debug\net10.0\ApuestasDeportivas.Contracts.pdb
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Contracts\obj\Debug\net10.0\ref\ApuestasDeportivas.Contracts.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Contracts\obj\Debug\net10.0\ApuestasDeportivas.Contracts.sourcelink.json

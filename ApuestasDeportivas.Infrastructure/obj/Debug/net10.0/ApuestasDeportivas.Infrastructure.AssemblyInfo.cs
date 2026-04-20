@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApuestasDeportivas.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbaaea3477b80a3a9314000d91758896a569b449")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e97796da49c4a3922ce2380c843b8c3b2936e17b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApuestasDeportivas.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApuestasDeportivas.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

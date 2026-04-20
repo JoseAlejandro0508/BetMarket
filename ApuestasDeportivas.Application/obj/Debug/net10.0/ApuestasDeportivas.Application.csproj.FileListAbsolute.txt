@@ -15,3 +15,4 @@ C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Applic
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\refint\ApuestasDeportivas.Application.dll
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.pdb
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ref\ApuestasDeportivas.Application.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Application\obj\Debug\net10.0\ApuestasDeportivas.Application.sourcelink.json

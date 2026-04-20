@@ -28,6 +28,7 @@ public class OddsService
     public async Task<IReadOnlyCollection<StoredOddsOfferDto>> GetStoredOffersAsync(string sportKey, CancellationToken cancellationToken = default)
     {
         var normalizedSport = string.IsNullOrWhiteSpace(sportKey) ? "multi" : sportKey.Trim();
+        DateTimeOffset now=DateTimeOffset.Now;
         var query = _dbContext.StoredOddsOffers.AsQueryable();
 
         // En modo multi devolvemos todo el snapshot guardado.
@@ -37,6 +38,7 @@ public class OddsService
         }
 
         var offers = await query.ToListAsync(cancellationToken);
+        offers=offers.Where(x => x.CommenceTime > now).ToList(); // Filtramos eventos ya comenzados para evitar mostrar ofertas obsoletas.
 
         return offers
             .OrderByDescending(x => x.SyncedAt)

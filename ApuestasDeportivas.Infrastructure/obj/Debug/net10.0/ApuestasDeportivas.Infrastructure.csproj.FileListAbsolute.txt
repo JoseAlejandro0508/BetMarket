@@ -19,3 +19,4 @@ C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Infras
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Infrastructure\obj\Debug\net10.0\ApuestasDeportivas.Infrastructure.pdb
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Infrastructure\obj\Debug\net10.0\ApuestasDeportivas.Infrastructure.genruntimeconfig.cache
 C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Infrastructure\obj\Debug\net10.0\ref\ApuestasDeportivas.Infrastructure.dll
+C:\Users\Alejandro\Desktop\Projects\ApuestasDeportivas\ApuestasDeportivas.Infrastructure\obj\Debug\net10.0\ApuestasDeportivas.Infrastructure.sourcelink.json
