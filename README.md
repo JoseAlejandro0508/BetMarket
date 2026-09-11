@@ -9,12 +9,6 @@ Proyecto fullstack de casa de apuestas deportivas con:
 - **Odds provider:** [The Odds API](https://the-odds-api.com/) en mercado `h2h`
 - **Bookmaker forzado:** `onexbet` (1xBet)
 
-## Diseño visual (Stitch)
-
-Se generó un proyecto de diseño visual en Stitch inspirado en 1xBet.
-
-- **Stitch Project:** `projects/11309137477063861572`
-- **Nombre:** `ApuestasDeportivas 1xBet Style`
 
 ## Requisitos funcionales implementados
 
